@@ -1,0 +1,44 @@
+"use client";
+import { ui } from "@/i18n/ui";
+
+import React from "react";
+import { Locale } from "@/types/portfolio";
+import { GeometricHeading } from "@/components/branding/GeometricHeading";
+import { ConcentricGraphic } from "@/components/branding/ConcentricGraphic";
+import { motion } from "framer-motion";
+
+interface WorkHeroProps {
+  locale: Locale;
+}
+
+export function WorkHero({ locale }: WorkHeroProps) {
+
+  return (
+    <section className="relative w-full pt-12 sm:pt-20 md:pt-28 pb-14 sm:pb-20 border-b border-[var(--border)] overflow-hidden">
+      <div className="container-popart">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          {/* Left Column: Massive Experimental WORK Typography & Subtext */}
+          <div className="lg:col-span-8 flex flex-col justify-center">
+            {/* Custom SVG Geometric Striped Lettering */}
+            <GeometricHeading text={ui(locale, "PROJETS", "WORK")} as="h1" className="mb-6 sm:mb-8" />
+
+            {/* Intro Copy */}
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="text-base sm:text-xl lg:text-2xl font-normal text-[var(--muted)] max-w-2xl leading-relaxed tracking-normal"
+            >
+              {ui(locale, "Des produits qui prennent vie. Beauté, mode, parfum et objets du quotidien : explorez notre sélection de films. Chaque film, son univers.", "Products, brought to life. Beauty, fashion, fragrance and everyday objects. Explore our film selection, each with a world of its own.")}
+            </motion.p>
+          </div>
+
+          {/* Right Column: Decorative Concentric Arc Graphic */}
+          <div className="hidden lg:flex lg:col-span-4 justify-end">
+            <ConcentricGraphic size={280} className="sm:w-[320px] sm:h-[320px]" />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
